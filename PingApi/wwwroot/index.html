@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2">
+  <meta name="description" content="Khám phá sách và gửi yêu cầu mượn tại thư viện của bạn.">
+  <title>Thư viện Mộc — Đọc thêm một chút</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=8">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Thư viện Mộc, trang chủ">
+      <span class="brand-mark" aria-hidden="true">m</span><span>mộc<span class="brand-sub"> thư viện</span></span>
+    </a>
+    <div class="topbar-actions">
+      <a class="profile-button" href="login.html" aria-label="Đăng nhập tài khoản"><span class="avatar">↗</span><span class="profile-name">Đăng nhập</span></a>
+      <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Mở thanh điều hướng" aria-expanded="false" aria-controls="library-sidebar"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+  <aside class="library-sidebar" id="library-sidebar" aria-label="Thanh điều hướng thư viện">
+    <p class="sidebar-caption">KHÔNG GIAN CỦA BẠN</p>
+    <nav class="sidebar-nav" aria-label="Các khu vực thư viện">
+      <a class="sidebar-link active" href="#home" data-sidebar-view="overview"><span class="sidebar-icon">⌂</span><span class="sidebar-label">Tổng quan</span></a>
+      <a class="sidebar-link" href="#collection" data-sidebar-view="catalog"><span class="sidebar-icon">▤</span><span class="sidebar-label">Khám phá sách</span></a>
+      <a class="sidebar-link" href="#collection" data-sidebar-view="favorites"><span class="sidebar-icon">♡</span><span class="sidebar-label">Sách yêu thích</span><span class="sidebar-badge" id="favorites-count">0</span></a>
+      <span class="sidebar-divider"></span>
+      <p class="sidebar-caption">MƯỢN SÁCH</p>
+      <a class="sidebar-link" href="#my-requests" data-sidebar-view="all"><span class="sidebar-icon">▣</span><span class="sidebar-label">Tất cả yêu cầu</span><span class="sidebar-badge" id="request-count">0</span></a>
+      <a class="sidebar-link" href="#my-requests" data-sidebar-view="Pending"><span class="sidebar-icon">◷</span><span class="sidebar-label">Đang chờ xử lý</span><span class="sidebar-badge" id="pending-count">0</span></a>
+      <a class="sidebar-link" href="#my-requests" data-sidebar-view="Reserved"><span class="sidebar-icon">▣</span><span class="sidebar-label">Đã giữ sách</span></a>
+      <a class="sidebar-link" href="#my-requests" data-sidebar-view="Borrowed"><span class="sidebar-icon">▤</span><span class="sidebar-label">Đang mượn</span><span class="sidebar-badge" id="borrowed-count">0</span></a>
+      <a class="sidebar-link" href="#my-requests" data-sidebar-view="history"><span class="sidebar-icon">↶</span><span class="sidebar-label">Lịch sử mượn</span></a>
+      <span class="sidebar-divider staff-nav" hidden></span>
+      <p class="sidebar-caption staff-nav" hidden>QUẢN LÝ THƯ VIỆN</p>
+      <a class="sidebar-link staff-nav" hidden href="management.html#books"><span class="sidebar-icon">▤</span><span class="sidebar-label">Quản lý sách</span></a>
+      <a class="sidebar-link staff-nav" hidden href="management.html#reservations"><span class="sidebar-icon">▣</span><span class="sidebar-label">Xác nhận mượn / trả</span></a>
+      <a class="sidebar-link admin-nav" hidden href="management.html#readers"><span class="sidebar-icon">♙</span><span class="sidebar-label">Quản lý độc giả</span></a>
+      <a class="sidebar-link admin-nav" hidden href="management.html#statistics"><span class="sidebar-icon">▥</span><span class="sidebar-label">Thống kê</span></a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-help"><span class="help-icon">?</span><span class="sidebar-label"><strong>Cần hỗ trợ?</strong><small>Liên hệ thủ thư của bạn</small></span></div>
+      <a class="sidebar-account" href="login.html" data-sidebar-view="account"><span class="avatar">↗</span><span class="sidebar-label"><strong>Tài khoản</strong><small id="sidebar-account-caption">Đăng nhập thư viện</small></span><span class="sidebar-account-arrow">↗</span></a>
+    </div>
+  </aside>
+
+  <main id="home" class="library-main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> GÓC ĐỌC CỦA BẠN</p>
+        <h1>Một cuốn sách hay<br>đang <em>chờ bạn.</em></h1>
+        <p class="hero-description">Chậm lại một nhịp, chọn một cuốn sách và để câu chuyện đưa bạn đi xa hơn.</p>
+        <a class="hero-cta" href="#collection">Tìm cuốn sách tiếp theo <span aria-hidden="true">↘</span></a>
+        <div class="hero-note"><span class="note-dots"><i></i><i></i><i></i></span> <span><strong id="hero-book-count">12 đầu sách</strong> đang chờ được mở ra</span></div>
+      </div>
+      <div class="hero-art" aria-label="Minh họa những cuốn sách trong nắng chiều" role="img">
+        <div class="sun"></div><div class="art-leaf leaf-one"></div><div class="art-leaf leaf-two"></div>
+        <div class="book-stack"><div class="hero-book book-back"><span>NHỮNG NGÀY<br>THƠ ẤU</span><small>NGUYÊN HỒNG</small></div><div class="hero-book book-mid"><span>ĐI TÌM<br>LẼ SỐNG</span><small>VIKTOR E. FRANKL</small></div><div class="hero-book book-front"><span>RỪNG<br>NA UY</span><small>HARUKI MURAKAMI</small></div></div>
+        <div class="art-caption"><span class="caption-rule"></span><span>Góc nhỏ, thế giới lớn</span></div>
+        <span class="art-spark spark-one">✳</span><span class="art-spark spark-two">✦</span>
+      </div>
+      <div class="hero-index"><span>01</span><span class="index-track"></span><span>03</span></div>
+    </section>
+
+    <section class="collection section-wrap" id="collection">
+      <div class="section-heading">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> TUYỂN CHỌN CHO BẠN</p><h2>Điều gì gọi bạn hôm nay?</h2></div>
+        <a class="text-link" href="#all-books">Xem tất cả <span>↗</span></a>
+      </div>
+      <div class="toolbar">
+        <div class="category-tabs" role="group" aria-label="Lọc theo thể loại">
+          <button class="category active" type="button" data-category="Tất cả">Tất cả sách <span>12</span></button>
+          <button class="category" type="button" data-category="Văn học">Văn học</button>
+          <button class="category" type="button" data-category="Kỹ năng">Kỹ năng</button>
+          <button class="category" type="button" data-category="Kinh doanh">Kinh doanh</button>
+          <button class="category" type="button" data-category="Thiếu nhi">Thiếu nhi</button>
+        </div>
+        <label class="search-box"><span class="search-icon" aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Tìm tên sách, tác giả..." aria-label="Tìm tên sách hoặc tác giả"><kbd>Ctrl K</kbd></label>
+      </div>
+      <div class="book-grid" id="book-grid" aria-live="polite"></div>
+      <div class="empty-state" id="empty-state" hidden>Không tìm thấy sách phù hợp. Thử một từ khóa khác nhé.</div>
+      <div class="load-more-wrap"><button class="load-more" type="button" id="load-more">Khám phá thêm sách <span>↓</span></button></div>
+    </section>
+
+    <section class="reading-banner section-wrap" id="all-books">
+      <div class="banner-mark">“</div><div><p class="eyebrow">MỘT GỢI Ý NHỎ</p><h2>“Đọc sách là trò chuyện với những bộ óc tuyệt vời nhất của các thế kỷ đã trôi qua.”</h2><p class="quote-author">— René Descartes</p></div><div class="banner-decoration" aria-hidden="true">✳</div>
+    </section>
+
+    <section class="requests-section section-wrap" id="my-requests">
+      <div class="section-heading request-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> TỦ SÁCH CỦA BẠN</p><h2>Yêu cầu mượn sách</h2></div><span class="request-hint">Theo dõi cập nhật từ thư viện</span></div>
+      <label class="request-user-picker">Đang xem yêu cầu của
+        <select id="active-library-user" aria-label="Chọn bạn đọc"></select>
+      </label>
+      <div id="request-list" class="request-list"></div>
+    </section>
+
+    <section class="account-section section-wrap" id="my-account" hidden>
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> TÀI KHOẢN THƯ VIỆN</p><h2>Hồ sơ bạn đọc</h2></div><span class="request-hint">Thông tin tài khoản đang đăng nhập</span></div>
+      <div class="account-card">
+        <div class="account-card-avatar" id="account-avatar">M</div>
+        <div class="account-details">
+          <p class="eyebrow">THÔNG TIN CÁ NHÂN</p>
+          <h3 id="account-name">Bạn đọc</h3>
+          <dl><div><dt>Email</dt><dd id="account-email"></dd></div><div><dt>Số điện thoại</dt><dd id="account-phone"></dd></div></dl>
+        </div>
+        <button class="account-logout" id="account-logout" type="button">Đăng xuất <span aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer library-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">m</span><span>mộc<span class="brand-sub"> thư viện</span></span></a><span>Một góc yên bình dành cho những người yêu sách.</span><span class="footer-copy">© <span id="current-year"></span> Thư viện Mộc</span></footer>
+
+  <dialog class="book-dialog" id="book-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="Đóng">×</button><div id="dialog-content"></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=2" defer></script>
+  <script src="library-api.js?v=8" defer></script>
+  <script src="sidebar.js?v=4" defer></script>
+</body>
+</html>
